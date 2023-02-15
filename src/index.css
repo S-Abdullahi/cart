@@ -50,7 +50,7 @@ nav{
 }
 
 .cart-number{
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -63,9 +63,12 @@ nav{
 
 .item-con{
   width: 50%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
   margin: 0 auto;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-bottom: solid 0.1px rgba(128, 128, 128, 0.176);
 }
 
 .image-con{
@@ -78,7 +81,6 @@ nav{
 }
 
 .item-detail-con{
-  margin-left: -40rem;
   font-size: 1.2rem;
   line-height: 1.6rem;
 }
@@ -99,7 +101,7 @@ nav{
 }
 
 .item-price{
-  color: gold;
+  color: rgb(218, 186, 6);
 }
 
 .select-con{
@@ -112,7 +114,7 @@ nav{
 
 .arrowup, .arrowdown{
   cursor: pointer;
-  color: gray;
+  color: gold;
 }
 @media screen and (max-width:1000px){
   .item-con{
