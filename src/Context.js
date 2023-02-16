@@ -1,17 +1,51 @@
-import React, {useState, useContext} from "react";
-import data from './data'
+import React, { useState, useContext } from "react";
+import data from "./data";
 
+const AppContext = React.createContext();
 
-const AppContext = React.createContext()
+const AppProvider = ({ children }) => {
+  const [itemData, setItemData] = useState(data);
+  const [itemNumber, setItemNumber] = useState(1);
 
-const AppProvider = ({children})=>{
-    const [itemData, setItemData] = useState(data)
+  function add(id) {
+    const item = itemData.find(item => item.id === id)
+    console.log(item)
+    setItemNumber(prev => prev + 1)
+  }
 
-    return <AppContext.Provider value={{itemData}}>{children}</AppContext.Provider>
-}
+  function subtract() {
+    setItemNumber(prev => prev - 1)
+  }
 
-export const useGlobalContext = ()=>{
-    return useContext(AppContext)
-}
+  function remove(id){
+    const item = itemData.filter(item => item.id !== id)
+    setItemData(item)
+  }
 
-export {AppProvider}
+  function clearCart(){
+    setItemData([])
+  }
+
+  return (
+    <AppContext.Provider
+      value={{
+        itemData,
+        setItemData,
+        itemNumber,
+        setItemNumber,
+        add,
+        subtract,
+        remove,
+        clearCart
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export const useGlobalContext = () => {
+  return useContext(AppContext);
+};
+
+export { AppProvider };
