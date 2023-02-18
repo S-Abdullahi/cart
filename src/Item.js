@@ -3,14 +3,14 @@ import { useGlobalContext } from "./Context";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 export default function Item() {
-  const { itemData, itemNumber, add, subtract, remove, clearCart } =
+  const {  add, subtract, remove, clearCart, state } =
     useGlobalContext();
 
   return (
     <section>
       <h1 className="main-heading">Your Cart</h1>
       <div>
-        {itemData.map((item) => {
+        {state.items.map((item) => {
           const { id, title, price, img } = item;
 
           return (
@@ -31,17 +31,17 @@ export default function Item() {
               </div>
               <div className="select-con">
                 <IoIosArrowUp className="arrowup" onClick={() => add(id)} />
-                <span className="item-number">{itemNumber}</span>
+                <span className="item-number">{state.itemNumber[id-1]}</span>
                 <IoIosArrowDown
                   className="arrowdown"
-                  onClick={() => subtract()}
+                  onClick={() => subtract(id)}
                 />
               </div>
             </div>
           );
         })}
       </div>
-      {itemData.length === 0 ? (
+      {state.items.length < 1 ? (
         <div className="empty-cart">
           <p>is currently empty</p>
         </div>
@@ -49,7 +49,7 @@ export default function Item() {
         <div>
           <div className="total-con">
             <p className="total total-text">Total</p>
-            <p className="total total-price">$1239</p>
+            <p className="total total-price">$ {state.total.toFixed(2)}</p>
           </div>
           <button className="clear-cart" onClick={() => clearCart()}>
             Clear Cart
