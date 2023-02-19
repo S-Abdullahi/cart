@@ -1,17 +1,23 @@
 import React from "react";
 import { useGlobalContext } from "./Context";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import Loading from './Loading'
 
 export default function Item() {
   const {  add, subtract, remove, clearCart, state } =
     useGlobalContext();
+
+  if(state.loading){
+    console.log('test loading')
+    return <Loading/>
+  }
 
   return (
     <section>
       <h1 className="main-heading">Your Cart</h1>
       <div>
         {state.items.map((item) => {
-          const { id, title, price, img } = item;
+          const { id, title, price, img, amount } = item;
 
           return (
             <div key={id} className="item-con">
@@ -31,7 +37,7 @@ export default function Item() {
               </div>
               <div className="select-con">
                 <IoIosArrowUp className="arrowup" onClick={() => add(id)} />
-                <span className="item-number">{state.itemNumber[id-1]}</span>
+                <span className="item-number">{amount}</span>
                 <IoIosArrowDown
                   className="arrowdown"
                   onClick={() => subtract(id)}

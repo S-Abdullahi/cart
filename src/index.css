@@ -192,6 +192,13 @@ border-top:3px solid gold;
   color: gray;
   letter-spacing: 0.2rem;
 }
+
+.loading-con{
+  margin-top: 10rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #001d3d;
+}
 @media screen and (max-width:1000px){
   .item-con, .total-con{
     width: 100%;
