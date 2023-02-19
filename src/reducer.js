@@ -6,7 +6,7 @@ import {
   TOTAL,
   CART_ITEMS,
   LOADING,
-  DISPLAY_CART
+  DISPLAY_CART,
 } from "./actions";
 
 function removeItem(id, state) {
@@ -62,12 +62,12 @@ const reducer = (state, action) => {
     return { ...state, total: sumTotal };
   }
 
-  if(action.type === LOADING){
-    return {...state, loading: true}
+  if (action.type === LOADING) {
+    return { ...state, loading: true };
   }
 
-  if(action.type === DISPLAY_CART){
-    return {...state, items:action.payload, loading:false}
+  if (action.type === DISPLAY_CART) {
+    return { ...state, items: action.payload, loading: false };
   }
 
   throw new Error("error occured");
